@@ -4,145 +4,148 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UAdmin — IT-сервіс</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <style>
     :root {
       --primary: #2e6eff;
-      --background: #f8faff;
-      --text: #2e2e2e;
+      --background: #0d1117;
+      --foreground: #161b22;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
     }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--background);
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
       color: var(--text);
+      line-height: 1.6;
     }
     header {
       background-color: var(--primary);
       color: white;
-      padding: 2rem 1rem;
       text-align: center;
-      border-radius: 0 0 20px 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 2.5rem 1rem;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
     header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
     }
     header p {
       margin-top: 0.5rem;
       font-size: 1.2rem;
     }
     section {
-      padding: 2rem 1rem;
-      max-width: 900px;
+      background-color: var(--foreground);
+      max-width: 960px;
       margin: 2rem auto;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
     }
     h2 {
-      color: var(--primary);
+      color: var(--accent);
       margin-bottom: 1rem;
     }
-    .services-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: flex-start;
+    ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
     }
-    .services-list {
-      flex: 1 1 60%;
-    }
-    .cta-button {
-      flex: 1 1 35%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    li {
+      margin-bottom: 0.8rem;
     }
     .cta-button a {
       display: inline-block;
-      background-color: #2e6eff;
+      background-color: var(--primary);
       color: white;
       padding: 1rem 2rem;
       font-size: 1.1rem;
       border-radius: 12px;
       text-decoration: none;
+      text-align: center;
       transition: background 0.3s;
       box-shadow: 0 4px 12px rgba(46, 110, 255, 0.3);
     }
     .cta-button a:hover {
       background-color: #174fd1;
     }
-    ul {
-      padding-left: 1.2rem;
-      margin-bottom: 2rem;
-    }
-    ul li {
-      margin-bottom: 0.7rem;
-    }
-    .contact, .why, .follow, .footer {
-      margin-top: 2rem;
+    .card {
+      background: #1c2128;
+      border-radius: 16px;
       padding: 1.5rem;
-      border-radius: 12px;
-    }
-    .contact {
-      background-color: #DCDCDC;
-    }
-    .why {
-      background-color: #DCDCDC;
-    }
-    .follow {
-      background-color: #DCDCDC;
+      margin-top: 1.5rem;
     }
     .footer {
       text-align: center;
       font-size: 0.9rem;
-      color: #888;
-      background: transparent;
+      color: var(--muted);
+      margin: 2rem auto;
     }
-    .bot-link {
-      text-align: center;
-      margin-top: 3rem;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background-color: #1c2128;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-top: 2rem;
     }
-    .bot-link a {
-      display: inline-block;
-      font-size: 1.2rem;
-      color: var(--primary);
-      text-decoration: none;
+    input, textarea {
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    input[type="submit"] {
+      background-color: var(--primary);
+      color: white;
       font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
     }
-    .bot-link a:hover {
-      text-decoration: underline;
+    input[type="submit"]:hover {
+      background-color: #174fd1;
     }
   </style>
 </head>
 <body>
-  <header>
+  <header data-aos="fade-down">
     <h1>UAdmin</h1>
     <p>IT-сервіс для малого бізнесу</p>
   </header>
 
-  <section>
+  <section data-aos="fade-up">
     <h2>Наші послуги</h2>
-    <div class="services-container">
-      <div class="services-list">
-        <ul>
-          <li>Налаштування ПК, ноутбуків, Windows, програм</li>
-          <li>Підключення та налаштування Wi-Fi, роутерів, мереж</li>
-          <li>Резервне копіювання даних (1С, CRM, документи)</li>
-          <li>Встановлення камер відеоспостереження з доступом через смартфон</li>
-          <li>Обслуговування принтерів, онлайн-кас, сканерів</li>
-          <li>Підбір техніки для бізнесу та дому</li>
-          <li>Консультації</li>
-        </ul>
-      </div>
-      <div class="cta-button">
-        <a href="https://t.me/uadmin_support_bot" target="_blank">Замовити через Telegram</a>
-      </div>
+    <ul>
+      <li>Налаштування ПК, ноутбуків, Windows, програм</li>
+      <li>Підключення та налаштування Wi-Fi, роутерів, мереж</li>
+      <li>Резервне копіювання даних (1С, CRM, документи)</li>
+      <li>Встановлення камер відеоспостереження з доступом через смартфон</li>
+      <li>Обслуговування принтерів, онлайн-кас, сканерів</li>
+      <li>Підбір техніки для бізнесу та дому</li>
+      <li>Консультації з кібербезпеки та стабільності</li>
+    </ul>
+
+    <div class="cta-button" data-aos="zoom-in">
+      <a href="https://t.me/uadmin_support_bot" target="_blank">🔹 Замовити через Telegram</a>
     </div>
 
-    <div class="why">
+    <form data-aos="fade-up">
+      <h2>Форма заявки</h2>
+      <input type="text" placeholder="Ваше ім’я" required>
+      <input type="text" placeholder="Контактний номер або Telegram" required>
+      <textarea placeholder="Коротко опишіть, з чим потрібна допомога..." rows="4" required></textarea>
+      <input type="submit" value="Надіслати заявку">
+    </form>
+
+    <div class="card" data-aos="fade-right">
       <h2>Чому саме UAdmin?</h2>
       <ul>
         <li>Віддалена підтримка по всій Україні</li>
@@ -152,31 +155,29 @@
       </ul>
     </div>
 
-    <div class="contact">
+    <div class="card" data-aos="fade-left">
       <h2>Контакти</h2>
       <p>Телефон / Telegram / Viber: <strong>+38 (0__) ___-__-__</strong></p>
       <p>Email: <strong>info@uadmin.com.ua</strong></p>
       <p>Місто: <strong>___________</strong> (працюємо по всій Україні онлайн)</p>
     </div>
 
-    <div class="follow">
+    <div class="card" data-aos="fade-up">
       <h2>Стеж за нами:</h2>
       <ul>
         <li>Instagram: <strong>@uadmin_it</strong></li>
-        <li>Telegram-канал: <strong>t.me/uadmin_support</strong></li>
+        <li>Telegram-канал: <strong><a href="https://t.me/+i2B3mRXRBfxkN2Ji" target="_blank" style="color: var(--accent);">UAdmin</a></strong></li>
+        <li>Бот для замовлень: <strong><a href="https://t.me/uadmin_support_bot" target="_blank" style="color: var(--accent);">@uadmin_order_bot</a></strong></li>
         <li>YouTube / TikTok — скоро!</li>
       </ul>
     </div>
-
-    <div class="bot-link">
-      <p>🤖 Наш бот прийому заявок:</p>
-      <a href="https://t.me/uadmin_support_bot" target="_blank">@uadmin_support_bot</a>
-    </div>
-
   </section>
 
   <div class="footer">
     <p>&copy; 2025 UAdmin. Ваш надійний IT-партнер.</p>
   </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
 </body>
 </html>
