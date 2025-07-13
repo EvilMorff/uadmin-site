@@ -166,7 +166,7 @@
       bottom: 20px;
       right: 20px;
       background: var(--primary);
-      color: black;
+      color: white;
       padding: 15px 20px;
       border-radius: 50%;
       text-decoration: none;
@@ -233,6 +233,47 @@
     <p>Місто: <strong>___________</strong> (працюємо по всій Україні онлайн)</p>
   </section>
 
+  <!-- Добавляем горизонтальный слайдер фотографий -->
+  <section class="card" data-aos="fade-up" style="overflow: hidden;">
+    <h2>Наші фото</h2>
+    <div class="slider-container" id="photo-slider" style="position: relative; width: 100%; max-width: 960px; margin: 0 auto;">
+      <div class="slider-track" id="slider-track" style="display: flex; transition: transform 0.3s ease;">
+        <img src="https://picsum.photos/id/1015/250/150" alt="Фото 1" style="width: 250px; flex-shrink: 0; margin-right: 15px; border-radius: 12px;">
+        <img src="https://picsum.photos/id/1016/250/150" alt="Фото 2" style="width: 250px; flex-shrink: 0; margin-right: 15px; border-radius: 12px;">
+        <img src="https://picsum.photos/id/1018/250/150" alt="Фото 3" style="width: 250px; flex-shrink: 0; margin-right: 15px; border-radius: 12px;">
+        <img src="https://picsum.photos/id/1019/250/150" alt="Фото 4" style="width: 250px; flex-shrink: 0; margin-right: 15px; border-radius: 12px;">
+        <img src="https://picsum.photos/id/1020/250/150" alt="Фото 5" style="width: 250px; flex-shrink: 0; margin-right: 15px; border-radius: 12px;">
+      </div>
+      <!-- Кнопки управления -->
+      <button id="prevBtn" aria-label="Назад" style="
+        position: absolute; top: 50%; left: 0;
+        transform: translateY(-50%);
+        background: var(--primary);
+        border: none;
+        color: white;
+        font-size: 24px;
+        padding: 0 12px;
+        cursor: pointer;
+        border-radius: 0 8px 8px 0;
+        user-select: none;
+        z-index: 10;
+      ">‹</button>
+      <button id="nextBtn" aria-label="Вперёд" style="
+        position: absolute; top: 50%; right: 0;
+        transform: translateY(-50%);
+        background: var(--primary);
+        border: none;
+        color: white;
+        font-size: 24px;
+        padding: 0 12px;
+        cursor: pointer;
+        border-radius: 8px 0 0 8px;
+        user-select: none;
+        z-index: 10;
+      ">›</button>
+    </div>
+  </section>
+
   <div class="card" data-aos="fade-up">
     <h2>Стеж за нами:</h2>
     <ul>
@@ -256,6 +297,42 @@
     window.addEventListener("scroll", () => {
       backToTop.classList.toggle("show", window.scrollY > 400);
     });
+
+    (function(){
+      const sliderTrack = document.getElementById('slider-track');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      const slideWidth = 265; // ширина фото + margin-right
+      let visibleWidth = sliderTrack.parentElement.offsetWidth;
+      let maxScroll = slideWidth * sliderTrack.children.length - visibleWidth;
+
+      let currentPosition = 0;
+
+      function updatePosition() {
+        if (currentPosition < 0) currentPosition = 0;
+        if (currentPosition > maxScroll) currentPosition = maxScroll;
+
+        sliderTrack.style.transform = `translateX(${-currentPosition}px)`;
+      }
+
+      prevBtn.addEventListener('click', () => {
+        currentPosition -= slideWidth;
+        updatePosition();
+      });
+
+      nextBtn.addEventListener('click', () => {
+        currentPosition += slideWidth;
+        updatePosition();
+      });
+
+      window.addEventListener('resize', () => {
+        visibleWidth = sliderTrack.parentElement.offsetWidth;
+        maxScroll = slideWidth * sliderTrack.children.length - visibleWidth;
+        if (currentPosition > maxScroll) currentPosition = maxScroll > 0 ? maxScroll : 0;
+        updatePosition();
+      });
+    })();
   </script>
 </body>
 </html>
