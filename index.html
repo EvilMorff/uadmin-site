@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UAdmin — IT-сервіс</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <style>
     :root {
@@ -20,27 +20,63 @@
       margin: 0;
       padding: 0;
     }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--background);
       color: var(--text);
       line-height: 1.6;
     }
+
     header {
-      background-color: var(--primary);
+      position: relative;
+      background-image: url('assets/bg-header.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       color: white;
+      padding: 3rem 1rem 2.5rem;
       text-align: center;
-      padding: 2.5rem 1rem;
-      border-radius: 0 0 24px 24px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    header h1, header nav {
+      position: relative;
+      z-index: 1;
+    }
+
     header h1 {
-      font-size: 2.8rem;
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
-    header p {
-      margin-top: 0.5rem;
-      font-size: 1.2rem;
+
+    nav {
+      margin-top: 1rem;
     }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+
     section {
       background-color: var(--foreground);
       max-width: 960px;
@@ -49,18 +85,22 @@
       border-radius: 20px;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
     }
+
     h2 {
       color: var(--accent);
       margin-bottom: 1rem;
     }
+
     ul {
       list-style: disc;
       padding-left: 1.5rem;
       margin-bottom: 2rem;
     }
+
     li {
       margin-bottom: 0.8rem;
     }
+
     .cta-button a {
       display: inline-block;
       background-color: var(--primary);
@@ -73,21 +113,11 @@
       transition: background 0.3s;
       box-shadow: 0 4px 12px rgba(46, 110, 255, 0.3);
     }
+
     .cta-button a:hover {
       background-color: #174fd1;
     }
-    .card {
-      background: #1c2128;
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin: 2rem auto;
-    }
+
     form {
       display: flex;
       flex-direction: column;
@@ -97,12 +127,14 @@
       border-radius: 12px;
       margin-top: 2rem;
     }
+
     input, textarea {
       padding: 0.8rem;
       border: none;
       border-radius: 8px;
       font-size: 1rem;
     }
+
     input[type="submit"] {
       background-color: var(--primary);
       color: white;
@@ -110,18 +142,65 @@
       cursor: pointer;
       transition: background 0.3s;
     }
+
     input[type="submit"]:hover {
       background-color: #174fd1;
+    }
+
+    .card {
+      background: #1c2128;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 2rem auto;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: black;
+      padding: 15px 20px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 1.4rem;
+      display: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+
+    #backToTop.show {
+      display: block;
+    }
+
+    /* Компенсация высоты шапки при якорном переходе */
+    section:target::before {
+      content: "";
+      display: block;
+      height: 60px;
+      margin-top: -60px;
     }
   </style>
 </head>
 <body>
-  <header data-aos="fade-down">
+  <a id="top"></a>
+  <header>
     <h1>UAdmin</h1>
-    <p>IT-сервіс для малого бізнесу</p>
+    <nav>
+      <a href="#services">Послуги</a>
+      <a href="#about">Про нас</a>
+      <a href="#contact">Контакти</a>
+    </nav>
   </header>
 
-  <section data-aos="fade-up">
+  <section id="services" data-aos="fade-up">
     <h2>Наші послуги</h2>
     <ul>
       <li>Налаштування ПК, ноутбуків, Windows, програм</li>
@@ -132,52 +211,61 @@
       <li>Підбір техніки для бізнесу та дому</li>
       <li>Консультації з кібербезпеки та стабільності</li>
     </ul>
-
     <div class="cta-button" data-aos="zoom-in">
       <a href="https://t.me/uadmin_support_bot" target="_blank">🔹 Замовити через Telegram</a>
     </div>
+  </section>
 
-    <form data-aos="fade-up">
+  <section id="about" class="card" data-aos="fade-right">
+    <h2>Чому саме UAdmin?</h2>
+    <ul>
+      <li>Віддалена підтримка по всій Україні</li>
+      <li>Вихідні — без вихідних: працюємо тоді, коли потрібно вам</li>
+      <li>Доступні ціни та чесність у кожному рішенні</li>
+      <li>Ніяких «розводів» — тільки реальні результати</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="card" data-aos="fade-left">
+    <h2>Контакти</h2>
+    <p>Телефон / Telegram / Viber: <strong>+38 (0__) ___-__-__</strong></p>
+    <p>Email: <strong>info@uadmin.com.ua</strong></p>
+    <p>Місто: <strong>___________</strong> (працюємо по всій Україні онлайн)</p>
+  </section>
+
+  <section data-aos="fade-up">
+    <form>
       <h2>Форма заявки</h2>
       <input type="text" placeholder="Ваше ім’я" required>
       <input type="text" placeholder="Контактний номер або Telegram" required>
       <textarea placeholder="Коротко опишіть, з чим потрібна допомога..." rows="4" required></textarea>
       <input type="submit" value="Надіслати заявку">
     </form>
-
-    <div class="card" data-aos="fade-right">
-      <h2>Чому саме UAdmin?</h2>
-      <ul>
-        <li>Віддалена підтримка по всій Україні</li>
-        <li>Вихідні — без вихідних: працюємо тоді, коли потрібно вам</li>
-        <li>Доступні ціни та чесність у кожному рішенні</li>
-        <li>Ніяких «розводів» — тільки реальні результати</li>
-      </ul>
-    </div>
-
-    <div class="card" data-aos="fade-left">
-      <h2>Контакти</h2>
-      <p>Телефон / Telegram / Viber: <strong>+38 (0__) ___-__-__</strong></p>
-      <p>Email: <strong>info@uadmin.com.ua</strong></p>
-      <p>Місто: <strong>___________</strong> (працюємо по всій Україні онлайн)</p>
-    </div>
-
-    <div class="card" data-aos="fade-up">
-      <h2>Стеж за нами:</h2>
-      <ul>
-        <li>Instagram: <strong>@uadmin_it</strong></li>
-        <li>Telegram-канал: <strong><a href="https://t.me/+i2B3mRXRBfxkN2Ji" target="_blank" style="color: var(--accent);">UAdmin</a></strong></li>
-        <li>Бот для замовлень: <strong><a href="https://t.me/uadmin_support_bot" target="_blank" style="color: var(--accent);">@uadmin_order_bot</a></strong></li>
-        <li>YouTube / TikTok — скоро!</li>
-      </ul>
-    </div>
   </section>
+
+  <div class="card" data-aos="fade-up">
+    <h2>Стеж за нами:</h2>
+    <ul>
+      <li>Instagram: <strong>@uadmin_it</strong></li>
+      <li>Telegram-канал: <strong><a href="https://t.me/+i2B3mRXRBfxkN2Ji" target="_blank" style="color: var(--accent);">UAdmin</a></strong></li>
+      <li>Бот для замовлень: <strong><a href="https://t.me/uadmin_support_bot" target="_blank" style="color: var(--accent);">@uadmin_order_bot</a></strong></li>
+      <li>YouTube / TikTok — скоро!</li>
+    </ul>
+  </div>
+
+  <a href="#top" id="backToTop" title="Вгору">↑</a>
 
   <div class="footer">
     <p>&copy; 2025 UAdmin. Ваш надійний IT-партнер.</p>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init();</script>
+  <script>
+    AOS.init();
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("show", window.scrollY > 400);
+    });
+  </script>
 </body>
 </html>
